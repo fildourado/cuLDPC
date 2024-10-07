@@ -2,7 +2,8 @@
 #include <cuda_runtime.h>
 
 // Example kernel for LDPC encoding
-__global__ void ldpc_encode_kernel(const int *input_bits, int *encoded_bits, int N) {
+__global__ void ldpc_encode_kernel(const int *input_bits, int *encoded_bits, int N) 
+{
     int idx = threadIdx.x + blockIdx.x * blockDim.x;
     if (idx < N)
     {
@@ -11,7 +12,8 @@ __global__ void ldpc_encode_kernel(const int *input_bits, int *encoded_bits, int
     }
 }
 
-void ldpc_encode(const int *input_bits, int *encoded_bits, int N) {
+void ldpc_encode(const int *input_bits, int *encoded_bits, int N) 
+{
     int *d_input, *d_encoded;
     cudaMalloc(&d_input, N * sizeof(int));
     cudaMalloc(&d_encoded, N * sizeof(int));
