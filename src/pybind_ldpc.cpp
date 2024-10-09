@@ -1,19 +1,24 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
+#include <pybind11/eigen.h>
 
+#include "utils.h"
 #include "code.h"
 #include "encoder.h"
 #include "decoder.h"
 
 namespace py = pybind11;
 
-void py_ldpc_make_code(int n_code, 
+std::tuple<MAT, MAT> py_ldpc_make_code(int n_code, 
                   int d_v, 
                   int d_c, 
                   bool systematic,
                   bool sparse)
 {
-    make_ldpc(n_code, d_v, d_c, systematic, sparse);
+    MAT H;
+    MAT G;
+    make_ldpc(n_code, d_v, d_c, systematic, sparse, H, G);
+    return std::make_tuple(H, G);
 }
 
 void py_ldpc_encode(py::array_t<int> input_bits, py::array_t<int> output_bits, int N) 

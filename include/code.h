@@ -5,6 +5,8 @@ void make_ldpc(int n_code,
                int d_v, 
                int d_c, 
                bool systematic, 
-               bool sparse);
+               bool sparse,
+               MAT &H,
+               MAT &G);
 
 #endif
