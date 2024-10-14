@@ -1,0 +1,7 @@
+{
+	"image": "cuLDPC/dev_env:latest",
+	"containerEnv": {
+		"SHELL": "/bin/bash"
+	}
+
+}

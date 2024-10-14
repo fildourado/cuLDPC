@@ -9,16 +9,13 @@
 
 namespace py = pybind11;
 
-std::tuple<MAT, MAT> py_ldpc_make_code(int n_code, 
+std::tuple<MAT, MAT> py_make_ldpc(int n_code, 
                   int d_v, 
                   int d_c, 
                   bool systematic,
                   bool sparse)
 {
-    MAT H;
-    MAT G;
-    make_ldpc(n_code, d_v, d_c, systematic, sparse, H, G);
-    return std::make_tuple(H, G);
+    return make_ldpc(n_code, d_v, d_c, systematic, sparse);
 }
 
 void py_ldpc_encode(py::array_t<int> input_bits, py::array_t<int> output_bits, int N) 
@@ -46,10 +43,10 @@ void py_ldpc_decode(py::array_t<int> input_bits, py::array_t<int> output_bits, i
     ldpc_decode(in_ptr, out_ptr, N);
 }
 
-PYBIND11_MODULE(ldpc_cuda_pybind, m) {
+PYBIND11_MODULE(cuLDPC_pybind, m) {
     m.doc() = "Python bindings for CUDA-based LDPC encoder and decoder";
 
-    m.def("make_code", &py_ldpc_make_code, "Make LDPC coding and decoding matrices",
+    m.def("make_ldpc", &py_make_ldpc, "Make LDPC coding and decoding matrices",
           py::arg("n_codes"), py::arg("d_v"), py::arg("d_c"),
           py::arg("systematic")=false, py::arg("sparse")=true);
 

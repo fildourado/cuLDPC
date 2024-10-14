@@ -5,4 +5,11 @@
 
 #define MAT Eigen::MatrixXi
 
+#define THROW_IF(condition, exceptionType, message) \
+    do { \
+        if (condition) { \
+            throw exceptionType(message); \
+        } \
+    } while(0)
+
 #endif

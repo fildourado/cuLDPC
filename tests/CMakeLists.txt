@@ -7,14 +7,14 @@ add_executable(test_decode test_decoder.cpp)
 
 target_link_libraries(
     test_encode
-    ldpc_cuda_lib
+    ${CULDPC_LIB_NAME}
     ${GTEST_LIBRARIES} 
     ${GTEST_MAIN_LIBRARIES} 
     ${CUDA_LIBRARIES})
 
 target_link_libraries(
     test_decode
-    ldpc_cuda_lib
+    ${CULDPC_LIB_NAME}
     ${GTEST_LIBRARIES} 
     ${GTEST_MAIN_LIBRARIES} 
     ${CUDA_LIBRARIES})
