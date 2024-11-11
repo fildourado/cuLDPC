@@ -3,10 +3,10 @@ project(cuLDPC)
 
 set(CULDPC_LIB_NAME "cuLDPC")
 
+#enable_language(CUDA)
 find_package(CUDA REQUIRED)
 set(CUDA_ARCHITECTURES "60")
 
-#include(/vcpkg/scripts/buildsystems/vcpkg.cmake)
 #find_package(python3)
 find_package(Eigen3 REQUIRED)
 include_directories(${EIGEN3_INCLUDE_DIR})

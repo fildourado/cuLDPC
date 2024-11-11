@@ -18,6 +18,13 @@ std::tuple<MAT, MAT> py_make_ldpc(int n_code,
     return make_ldpc(n_code, d_v, d_c, systematic, sparse);
 }
 
+std::tuple<MAT, MAT> py_make_ldpc_known_H(MAT H,
+                                          bool systematic,
+                                          bool sparse)
+{
+    return make_ldpc(H, systematic, sparse);
+}
+
 void py_ldpc_encode(py::array_t<int> input_bits, py::array_t<int> output_bits, int N) 
 {
     // Get pointers to input/output arrays
@@ -48,6 +55,10 @@ PYBIND11_MODULE(cuLDPC_pybind, m) {
 
     m.def("make_ldpc", &py_make_ldpc, "Make LDPC coding and decoding matrices",
           py::arg("n_codes"), py::arg("d_v"), py::arg("d_c"),
+          py::arg("systematic")=false, py::arg("sparse")=true);
+
+    m.def("make_ldpc_known_H", &py_make_ldpc_known_H, "Make LDPC coding and decoding matrices",
+          py::arg("H"),
           py::arg("systematic")=false, py::arg("sparse")=true);
 
     m.def("encode", &py_ldpc_encode, "Encode LDPC",

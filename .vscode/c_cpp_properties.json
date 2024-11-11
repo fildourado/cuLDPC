@@ -5,7 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "/usr/include/eigen3",
-                "~/miniconda3/envs/cuLDPC/lib/python3.12/site-packages/pybind11/include"
+                //"~/miniconda3/envs/cuLDPC/lib/python3.12/site-packages/pybind11/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

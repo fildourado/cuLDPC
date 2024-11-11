@@ -1,5 +1,7 @@
-#ifndef LDPC_CODE_H
-#define LDPC_CODE_H
+#pragma once
+
+#include <tuple>
+#include "utils.h"
 
 std::tuple<MAT, MAT> make_ldpc(int n_code,
                                int d_v, 
@@ -7,4 +9,6 @@ std::tuple<MAT, MAT> make_ldpc(int n_code,
                                bool systematic,
                                bool sparse);
 
-#endif
+std::tuple<MAT,MAT> make_ldpc(MAT H, 
+                              bool systematic, 
+                              bool sparse);

@@ -2,6 +2,18 @@
 	"image": "cuLDPC/dev_env:latest",
 	"containerEnv": {
 		"SHELL": "/bin/bash"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cpptools",
+				"ms-vscode.cpptools-extension-pack",
+				"ms-python.python",
+				"ms-python.debugpy",
+				"twxs.cmake",
+				"ms-vscode.cmake-tools"
+			]
+		}
 	}
 
 }
