@@ -25,17 +25,20 @@ std::tuple<MAT, MAT> py_make_ldpc_known_H(MAT H,
     return make_ldpc(H, systematic, sparse);
 }
 
-void py_ldpc_encode(py::array_t<int> input_bits, py::array_t<int> output_bits, int N) 
+MATf py_ldpc_encode(MAT tG, 
+                    MAT v, 
+                    float snr) 
 {
     // Get pointers to input/output arrays
-    py::buffer_info in_buf = input_bits.request();
-    py::buffer_info out_buf = output_bits.request();
+    //py::buffer_info in_buf = input_bits.request();
+    //py::buffer_info out_buf = output_bits.request();
 
-    int* in_ptr = static_cast<int*>(in_buf.ptr);
-    int* out_ptr = static_cast<int*>(out_buf.ptr);
+    //int* in_ptr = static_cast<int*>(in_buf.ptr);
+    //int* out_ptr = static_cast<int*>(out_buf.ptr);
+    MAT *p_tG = &tG;
+    MAT *p_v = &v;
+    return ldpc_encode(p_tG, p_v, snr);
 
-    // Call C++ LDPC encode function
-    ldpc_encode(in_ptr, out_ptr, N);
 }
 
 void py_ldpc_decode(py::array_t<int> input_bits, py::array_t<int> output_bits, int N) {
@@ -62,7 +65,7 @@ PYBIND11_MODULE(cuLDPC_pybind, m) {
           py::arg("systematic")=false, py::arg("sparse")=true);
 
     m.def("encode", &py_ldpc_encode, "Encode LDPC",
-          py::arg("input_bits"), py::arg("output_bits"), py::arg("N"));
+          py::arg("tG"), py::arg("v"), py::arg("snr"));
 
     m.def("decode", &py_ldpc_decode, "Decode LDPC",
           py::arg("input_bits"), py::arg("output_bits"), py::arg("N"));

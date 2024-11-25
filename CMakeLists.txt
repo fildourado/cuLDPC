@@ -25,12 +25,14 @@ set(SRC_FILES
     src/code.cpp
     src/encoder.cu
     src/decoder.cu
+    src/encoder.cpp
 )
 
 cuda_add_library(${CULDPC_LIB_NAME} STATIC ${SRC_FILES})
 
 # Link CUDA runtime library to the static library
 target_link_libraries(${CULDPC_LIB_NAME} ${CUDA_LIBRARIES})
+target_link_libraries(${CULDPC_LIB_NAME} cublas)
 
 add_subdirectory(tests)
 

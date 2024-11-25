@@ -1,3 +1,5 @@
 #pragma once
+#include "utils.h"
 
-void ldpc_encode(const int *input_bits, int *encoded_bits, int N);
+MATf ldpc_encode(MAT *p_G, MAT * p_v, float snr);
+

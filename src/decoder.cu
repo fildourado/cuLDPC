@@ -10,7 +10,8 @@ __global__ void ldpc_decode_kernel(const int *received_bits, int *decoded_bits, 
     }
 }
 
-void ldpc_decode(const int *received_bits, int *decoded_bits, int N) {
+void ldpc_decode(const int *received_bits, int *decoded_bits, int N) 
+{
     int *d_received, *d_decoded;
     cudaMalloc(&d_received, N * sizeof(int));
     cudaMalloc(&d_decoded, N * sizeof(int));
